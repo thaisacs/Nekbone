@@ -2,8 +2,9 @@
 # Nek5000 build config file
 # (c) 2008,2009,2010 UCHICAGO ARGONNE, LLC
 
-# source path 
-SOURCE_ROOT="$HOME/Nekbone/src" 
+# source path
+#SOURCE_ROOT="$HOME/Nekbone/src"
+SOURCE_ROOT="$HOME/Dev/master/ECP-Proxy-Apps/Nekbone/src"
 
 # Fortran compiler
 F77="mpif77"

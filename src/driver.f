@@ -1,6 +1,6 @@
 c-----------------------------------------------------------------------
       program nekbone
-      
+
       include 'SIZE'
       include 'TOTAL'
       include 'SEMHAT'
@@ -13,7 +13,7 @@ c-----------------------------------------------------------------------
       real x(lt),f(lt),r(lt),w(lt),p(lt),z(lt),c(lt)
       real g(6,lt)
       real mfloplist(1024), avmflop
-      integer icount  
+      integer icount
 
       logical ifbrick
       integer iel0,ielN,ielD   ! element range per proc.
@@ -21,6 +21,7 @@ c-----------------------------------------------------------------------
       integer npx,npy,npz      ! processor decomp
       integer mx ,my ,mz       ! element decomp
 
+      call init_timestep()
 
       call iniproc(mpi_comm_world)    ! has nekmpi common block
       call init_delay
@@ -38,6 +39,8 @@ c     SET UP and RUN NEKBONE
       do nx1=nx0,nxN,nxD
          call init_dim
          do nelt=iel0,ielN,ielD
+           call begin_timestep()
+
            call init_mesh(ifbrick,cmask,npx,npy,npz,mx,my,mz)
            call proxy_setupds    (gsh,nx1) ! Has nekmpi common block
            call set_multiplicity (c)       ! Inverse of counting matrix
@@ -60,9 +63,11 @@ c     SET UP and RUN NEKBONE
            call set_timer_flop_cnt(1)
 
            call gs_free(gsh)
-           
+
            icount = icount + 1
            mfloplist(icount) = mflops*np
+
+           call end_timestep()
          enddo
       enddo
 
@@ -81,6 +86,7 @@ c     SET UP and RUN NEKBONE
 c     TEST BANDWIDTH BISECTION CAPACITY
 c     call xfer(np,cr_h)
 
+      call exit_timestep()
       call exitt0
 
       end
