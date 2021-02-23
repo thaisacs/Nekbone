@@ -101,7 +101,7 @@ objdir:
 	@mkdir $(OBJDIR) 2>/dev/null; cat /dev/null 
 
 nekbone: 	objdir $(NOBJS0_bone)
-	$(F77) -o ${BINNAME} $G $(NOBJS0_bone) $(lFLAGS) ../../../kernel_stats/kernel_stats.o
+	$(F77) -o ${BINNAME} $G $(NOBJS0_bone) $(lFLAGS) ../../../../utils/kernel_stats.o
 	@if test -f ${BINNAME}; then \
 	echo "#############################################################"; \
 	echo "#                  Compilation successful!                  #"; \
