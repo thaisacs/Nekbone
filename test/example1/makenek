@@ -4,7 +4,7 @@
 
 # source path
 #SOURCE_ROOT="$HOME/Nekbone/src"
-SOURCE_ROOT="$HOME/Dev/master/experiments-master/PI-Bench/ECP-Proxy-Apps/Nekbone/src"
+#SOURCE_ROOT="$HOME/Dev/master/experiments-master/PI-Bench/ECP-Proxy-Apps/Nekbone/src"
 
 # Fortran compiler
 F77="mpif77"
